@@ -12,6 +12,7 @@
     "@syncfusion/ej2-navigations": "^27.1.50",
     "@syncfusion/ej2-popups": "^27.1.50",
     "@syncfusion/ej2-react-base": "^27.1.50",
+    "@syncfusion/ej2-react-buttons": "^27.1.50",
     "@syncfusion/ej2-react-calendars": "^27.1.50",
     "@syncfusion/ej2-react-schedule": "^27.1.50",
     "@testing-library/jest-dom": "^5.17.0",

@@ -1,9 +1,12 @@
 import React from 'react';
+import { useRef } from 'react';
 import './App.css';
-import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, EventSettingsModel } from '@syncfusion/ej2-react-schedule';
+import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject, EventSettingsModel, ViewsDirective, ViewDirective } from '@syncfusion/ej2-react-schedule';
 import axios from 'axios';
+import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 
 class App extends React.Component {
+  public scheduleObj = React.createRef<ScheduleComponent>();
   public eventSettings: EventSettingsModel = { dataSource: [] };
 
   componentDidMount() {
@@ -52,15 +55,27 @@ class App extends React.Component {
         });
     }
   }
+  eventEditorButton = () => {
+    let eventData: Object = {
+      Id: 4,
+      Subject: 'Meteor Showers in 2024',
+      StartTime: new Date(2024, 8, 27, 13, 0),
+      EndTime: new Date(2024, 8, 27, 14, 30)
+    };
+    this.scheduleObj.current?.openEditor(eventData, 'Save');
+  };
 
   public render() {
     return (
-      <ScheduleComponent
-        eventSettings={this.eventSettings}
-        actionComplete={this.handleActionComplete}
-      >
-        <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-      </ScheduleComponent>
+      <div>
+        <ButtonComponent onClick={this.eventEditorButton}>Add Event</ButtonComponent>
+        <ScheduleComponent
+          eventSettings={this.eventSettings}
+          actionComplete={this.handleActionComplete}
+        >
+          <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+        </ScheduleComponent>
+      </div>
     );
   }
 }
